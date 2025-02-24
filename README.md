@@ -85,6 +85,4 @@ M-commerce involves buying and selling through mobile devices. Examples include:
 - Rise of **Augmented Reality (AR)** to enhance the shopping experience.  
 - **Faster delivery methods** (drones, same-day delivery).  
 
----  
 
-This summary covers all the important points from your material. 🚀
