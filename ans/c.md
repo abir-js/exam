@@ -54,6 +54,11 @@ int main() {
 
 **A:** `int`, `char`, `float`, `double`
 
+int Size: 4 bytes (can vary by system).
+char Size: 1 byte
+float Size: 4 byte
+double Size: 8 byte
+
 ### Q: Derived data types
 
 **A:** Arrays, pointers, structures, unions
