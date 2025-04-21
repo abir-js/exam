@@ -381,9 +381,7 @@ free(arr);
 - Pointers can point to arrays, functions, and other pointers.
 - Enable pass-by-reference using pointers in functions.
 - Dynamic memory functions: `malloc`, `calloc`, `realloc`, `free`.
-```
 
-This should work perfectly when copied and pasted into any Markdown file, like `.md` or README files. Let me know if you need further clarifications!
 
 ### Q: Dynamic memory allocation
 
