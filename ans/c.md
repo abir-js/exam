@@ -389,35 +389,199 @@ free(arr);
 
 ---
 
-## 🔹 Structures and Unions
+Got it! Here’s the content on **Structures and Unions** in C:
 
-### Q: Define struct and union
+---
 
+### 🔹 Structures and Unions
+
+**Structures** and **Unions** are both user-defined data types in C that allow grouping variables of different types under a single name.
+
+---
+
+#### **Defining and Using `struct` and `union`**
+
+##### **Structures (`struct`)**
+
+A structure is a collection of variables (members) of different data types grouped together under a single name.
+
+**Syntax:**
 ```c
-struct Student {
-    int id;
-    char name[20];
-};
-union Data {
-    int i;
-    float f;
+struct StructureName {
+    data_type member1;
+    data_type member2;
+    // other members
 };
 ```
 
-### Q: Difference
-
-- **Struct**: All members have separate memory
-- **Union**: Shared memory for all members
-
-### Q: Nesting
-
-- Structures can contain other structures
-
-### Q: `typedef` and `enum`
+**Example:**
 
 ```c
-typedef struct Student Stud;
-enum Days {Mon, Tue};
+#include <stdio.h>
+
+struct Student {
+    char name[50];
+    int age;
+    float marks;
+};
+
+int main() {
+    struct Student student1;
+
+    // Assign values to the members
+    strcpy(student1.name, "John");
+    student1.age = 20;
+    student1.marks = 88.5;
+
+    // Access and print the values
+    printf("Name: %s\n", student1.name);
+    printf("Age: %d\n", student1.age);
+    printf("Marks: %.2f\n", student1.marks);
+
+    return 0;
+}
+```
+
+---
+
+##### **Unions (`union`)**
+
+A union is a collection of variables that share the same memory location. Only one member can hold a value at a time.
+
+**Syntax:**
+```c
+union UnionName {
+    data_type member1;
+    data_type member2;
+    // other members
+};
+```
+
+**Example:**
+
+```c
+#include <stdio.h>
+
+union Data {
+    int i;
+    float f;
+    char str[20];
+};
+
+int main() {
+    union Data data1;
+
+    // Assigning value to integer member
+    data1.i = 10;
+    printf("Integer: %d\n", data1.i);
+
+    // Assigning value to float member
+    data1.f = 220.5;
+    printf("Float: %.2f\n", data1.f);
+
+    // Assigning value to string member
+    strcpy(data1.str, "Hello, World!");
+    printf("String: %s\n", data1.str);
+
+    // Note that only the last assigned value is valid
+
+    return 0;
+}
+```
+
+---
+
+#### **Difference Between Structures and Unions**
+
+| Feature               | Structure                                      | Union                                      |
+|-----------------------|-------------------------------------------------|--------------------------------------------|
+| **Memory Allocation**  | Allocates memory for all members individually   | Allocates memory for the largest member only |
+| **Size**               | The size of the structure is the sum of the sizes of all its members | The size of the union is the size of its largest member |
+| **Access**             | All members can be accessed simultaneously      | Only one member can be accessed at a time |
+| **Use Case**           | When all members need to hold data at the same time | When only one member needs to hold data at a time |
+
+---
+
+#### **Nesting of Structures**
+
+You can nest one structure inside another to create complex data types.
+
+**Example:**
+
+```c
+#include <stdio.h>
+
+struct Date {
+    int day;
+    int month;
+    int year;
+};
+
+struct Employee {
+    char name[50];
+    int id;
+    struct Date joining_date;
+};
+
+int main() {
+    struct Employee emp1 = {"Alice", 101, {12, 5, 2021}};
+    
+    printf("Employee Name: %s\n", emp1.name);
+    printf("Employee ID: %d\n", emp1.id);
+    printf("Joining Date: %d-%d-%d\n", emp1.joining_date.day, emp1.joining_date.month, emp1.joining_date.year);
+
+    return 0;
+}
+```
+
+---
+
+#### **Use of `typedef` and `enum`**
+
+##### **`typedef`**
+
+`typedef` is used to create aliases for data types, making complex types easier to use.
+
+**Example:**
+
+```c
+#include <stdio.h>
+
+typedef struct {
+    int x;
+    int y;
+} Point;
+
+int main() {
+    Point p1;  // Equivalent to struct Point p1;
+    p1.x = 5;
+    p1.y = 10;
+    
+    printf("Point p1: (%d, %d)\n", p1.x, p1.y);
+
+    return 0;
+}
+```
+
+##### **`enum`**
+
+An `enum` is a data type that defines a set of named integer constants. It's useful for representing states or categories.
+
+**Example:**
+
+```c
+#include <stdio.h>
+
+enum Day { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday };
+
+int main() {
+    enum Day today;
+    today = Wednesday;
+    
+    printf("Today is day number: %d\n", today);  // Output: Today is day number: 3
+
+    return 0;
+}
 ```
 
 ---
