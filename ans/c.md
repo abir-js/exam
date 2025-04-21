@@ -452,8 +452,176 @@ fclose(fp);
 - Macros: Text substitution
 - Functions: Actual code, better for debugging
 
+
+# 🔹 Preprocessor Directives in C
+
+Preprocessor directives are instructions that are processed by the preprocessor before the actual compilation begins. They modify the source code or provide information for the compiler.
+
 ---
 
+## 📌 Common Preprocessor Directives
+
+### 1. `#define`
+
+Defines a macro or constant.
+
+```c
+#define PI 3.14
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+```
+
+- `PI` is a constant that holds the value `3.14`.
+- `MAX(a, b)` is a macro to find the maximum of two values.
+
+### 2. `#include`
+
+Includes header files into the program. This can be a standard library header or a custom header file.
+
+```c
+#include <stdio.h>    // Standard library header
+#include "myheader.h"  // Custom header file
+```
+
+- `<stdio.h>` is for input and output operations.
+- `"myheader.h"` is a user-defined header file.
+
+### 3. `#ifdef`, `#ifndef`, `#endif`
+
+Conditional compilation directives. Used to include/exclude code based on whether a macro is defined or not.
+
+```c
+#ifdef DEBUG
+    printf("Debugging enabled.\n");
+#endif
+```
+
+- `#ifdef` checks if a macro is defined.
+- `#ifndef` checks if a macro is **not** defined.
+
+### 4. `#if`, `#else`, `#elif`
+
+Used to check conditions during preprocessing.
+
+```c
+#if defined(WINDOWS)
+    printf("Windows OS\n");
+#elif defined(LINUX)
+    printf("Linux OS\n");
+#else
+    printf("Unknown OS\n");
+#endif
+```
+
+- `#if` evaluates a condition.
+- `#else` provides an alternative if the condition is false.
+- `#elif` provides an "else if" condition.
+
+### 5. `#undef`
+
+Undefines a macro previously defined with `#define`.
+
+```c
+#define PI 3.14
+#undef PI
+```
+
+- After `#undef`, `PI` is no longer available.
+
+---
+
+## 📌 Macros vs Functions
+
+### 🔹 Macros
+
+- **Definition**: Macros are preprocessor directives that perform text substitution before the code is compiled.
+- **Syntax**: Defined using `#define`.
+- **Evaluation**: Macros are evaluated at the preprocessing stage, not during runtime.
+- **No type checking**: Macros do not perform type checking or error checking.
+- **Performance**: Macros may provide faster execution as they avoid function calls.
+
+#### Example: Macro
+
+```c
+#define SQUARE(x) ((x) * (x))
+
+int main() {
+    int result = SQUARE(5);  // Expands to ((5) * (5)) during preprocessing
+    printf("Square: %d\n", result);
+    return 0;
+}
+```
+
+**Advantages**:
+- No function call overhead, faster execution in simple cases.
+- Simple syntax for mathematical operations.
+
+**Disadvantages**:
+- Lack of type safety.
+- Potential side effects from multiple evaluations.
+
+---
+
+### 🔹 Functions
+
+- **Definition**: Functions are blocks of code that perform specific tasks and can be reused.
+- **Syntax**: Defined with `return_type function_name(parameters) { }`.
+- **Evaluation**: Functions are evaluated during runtime.
+- **Type checking**: Functions perform type checking and error checking at compile time.
+- **Performance**: Function calls introduce a slight overhead due to the stack management.
+
+#### Example: Function
+
+```c
+int square(int x) {
+    return x * x;
+}
+
+int main() {
+    int result = square(5);  // Function call at runtime
+    printf("Square: %d\n", result);
+    return 0;
+}
+```
+
+**Advantages**:
+- Type-safe and error-checked.
+- Easier to debug and maintain.
+- Supports recursion and complex operations.
+
+**Disadvantages**:
+- Function call overhead, slower than macros in simple cases.
+
+---
+
+## ✅ Summary
+
+| Directive     | Description                                           |
+|---------------|-------------------------------------------------------|
+| `#define`     | Defines constants or macros                            |
+| `#include`    | Includes header files                                  |
+| `#ifdef`      | Checks if a macro is defined                           |
+| `#ifndef`     | Checks if a macro is not defined                       |
+| `#if`         | Evaluates a condition                                  |
+| `#else`       | Provides an alternative block if the condition is false|
+| `#elif`       | Provides an "else if" condition                        |
+| `#endif`      | Ends a conditional block                               |
+| `#undef`      | Undefines a macro                                      |
+
+---
+
+| Feature       | Macros                                    | Functions                                |
+|---------------|-------------------------------------------|------------------------------------------|
+| **Syntax**    | `#define MACRO_NAME(...)`                 | `return_type function_name(...){}`       |
+| **Evaluation**| Preprocessing (before compilation)       | Runtime (during execution)               |
+| **Type Safety**| No type checking                        | Type-safe with error checking            |
+| **Performance**| Faster (no overhead)                    | Slight overhead due to function calls    |
+| **Use cases** | Simple tasks, mathematical operations    | Complex logic, error handling, recursion |
+
+---
+
+Macros are generally faster due to the lack of function call overhead but can cause issues due to lack of type checking. Functions provide better safety and debugging support but can introduce slight performance overhead.
+
+---
 ## 🔹 Common Coding Questions
 
 ### Factorial using recursion
