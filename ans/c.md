@@ -190,8 +190,40 @@ int matrix[3][3];
 
 ### Q: Character array vs string
 
-- Char array: Holds characters
-- String: Null-terminated char array
+# Character Array vs String in C
+
+## 🧵 Basic Difference
+
+| Feature                  | Character Array                           | String (Null-Terminated Character Array) |
+|--------------------------|--------------------------------------------|-------------------------------------------|
+| **Definition**           | An array of characters                    | A character array ending with `\0`        |
+| **Null Terminator (`\0`)**| Not necessarily included                 | Always ends with `\0`                     |
+| **Example**              | `char arr[] = {'H', 'e', 'l', 'l', 'o'};` | `char str[] = "Hello";`                   |
+| **Size**                 | 5                                         | 6 (5 letters + 1 null character)          |
+| **Library Support**      | Can't use string functions like `strlen` | Works with string functions (`strlen`, `strcpy`, etc.) |
+| **Printing with `%s`**   | May print garbage after characters        | Safe to print with `%s`                   |
+
+---
+
+## 🔍 Example Code
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char arr[] = {'H', 'e', 'l', 'l', 'o'};
+    char str[] = "Hello";
+
+    printf("arr: ");
+    for (int i = 0; i < 5; i++) {
+        printf("%c", arr[i]);
+    }
+
+    printf("\nstr: %s", str); // Safe with %s
+    return 0;
+}
+
 
 ---
 
