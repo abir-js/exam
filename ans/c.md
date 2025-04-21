@@ -94,6 +94,34 @@ int main() {
 
 **A:** Defines evaluation order. E.g., `* /` have higher precedence than `+ -`.
 
+# Operator Precedence in C
+
+Operator precedence determines the order in which operators are evaluated in expressions.
+
+## Highest to Lowest Precedence
+
+| Precedence Level | Operators                                   | Description                        | Associativity         |
+|------------------|---------------------------------------------|------------------------------------|------------------------|
+| 1                | `()` `[]` `.` `->`                          | Function call, array, member access| Left to Right          |
+| 2                | `++` `--` `+` `-` `!` `~` `*` `&` `sizeof`   | Unary operators                    | Right to Left          |
+| 3                | `*` `/` `%`                                 | Multiplication, Division, Modulus | Left to Right          |
+| 4                | `+` `-`                                     | Addition, Subtraction              | Left to Right          |
+| 5                | `<<` `>>`                                   | Bitwise shift                      | Left to Right          |
+| 6                | `<` `<=` `>` `>=`                           | Relational                         | Left to Right          |
+| 7                | `==` `!=`                                   | Equality                           | Left to Right          |
+| 8                | `&`                                         | Bitwise AND                        | Left to Right          |
+| 9                | `^`                                         | Bitwise XOR                        | Left to Right          |
+| 10               | `|`                                         | Bitwise OR                         | Left to Right          |
+| 11               | `&&`                                        | Logical AND                        | Left to Right          |
+| 12               | `||`                                        | Logical OR                         | Left to Right          |
+| 13               | `?:`                                        | Ternary conditional                | Right to Left          |
+| 14               | `=` `+=` `-=` `*=` `/=` `%=` `<<=` `>>=` etc| Assignment                         | Right to Left          |
+| 15               | `,`                                         | Comma                              | Left to Right          |
+
+> 💡 Use parentheses `()` to make the evaluation order explicit and avoid confusion.
+
+
+
 ---
 
 ## 🔹 Control Flow Statements
